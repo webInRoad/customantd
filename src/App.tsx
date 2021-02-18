@@ -1,10 +1,19 @@
 import React from 'react'
-
+import Button, { ButtonSize, ButtonType } from './components/Button/button'
 function App() {
 	return (
 		<div className="App">
 			<header className="App-header">
-				<h1>标题1</h1>
+				<Button size={ButtonSize.Large}>Hello</Button>
+				<Button disabled size={ButtonSize.Small}>
+					Hello
+				</Button>
+				<Button disabled btnType={ButtonType.Danger}>
+					Hello
+				</Button>
+				<Button disabled btnType={ButtonType.Link}>
+					Hello
+				</Button>
 				<p>
 					Edit <code>src/App.tsx</code> and save to reload.
 				</p>
