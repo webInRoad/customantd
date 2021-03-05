@@ -11,6 +11,7 @@ function App() {
 				<Button disabled btnType={ButtonType.Danger}>
 					Hello
 				</Button>
+				<Button btnType={ButtonType.Primary}>Hello</Button>
 				<Button disabled btnType={ButtonType.Link}>
 					Hello
 				</Button>
