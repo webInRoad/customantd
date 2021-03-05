@@ -4,7 +4,9 @@ function App() {
 	return (
 		<div className="App">
 			<header className="App-header">
-				<Button size={ButtonSize.Large}>Hello</Button>
+				<Button size={ButtonSize.Large} onClick={() => alert(2)}>
+					Hello
+				</Button>
 				<Button disabled size={ButtonSize.Small}>
 					Hello
 				</Button>

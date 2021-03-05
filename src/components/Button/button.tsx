@@ -21,6 +21,8 @@ interface ButtonProps {
 	children: React.ReactNode
 	link?: string
 }
+type NativeButtonProps = ButtonProps & React.ButtonHTMLAttributes<HTMLElement>
+type NativeAnchorProps = ButtonProps & React.AnchorHTMLAttributes<HTMLElement>
 
 const Button: React.FC<ButtonProps> = (props) => {
 	const { className, size, btnType, disabled, children, link } = props
