@@ -7,7 +7,7 @@ function App() {
 				<Button size={ButtonSize.Large} onClick={() => alert(2)}>
 					Hello
 				</Button>
-				<Button disabled size={ButtonSize.Small}>
+				<Button disabled size={ButtonSize.Small} className="custom">
 					Hello
 				</Button>
 				<Button disabled btnType={ButtonType.Danger}>
