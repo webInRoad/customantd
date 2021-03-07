@@ -1,5 +1,6 @@
 import React from 'react'
 import Button, { ButtonSize, ButtonType } from './components/Button/button'
+import Alert, { AlertType } from './components/Alert/alert'
 function App() {
 	return (
 		<div className="App">
@@ -17,7 +18,14 @@ function App() {
 				<Button disabled btnType={ButtonType.Link}>
 					Hello
 				</Button>
-				<p>
+				<Alert title="this is alert!"></Alert>
+				<Alert
+					type={AlertType.Success}
+					showClose={false}
+					title="this is alert!"
+					content="this is a long description"
+				></Alert>
+				{/* <p>
 					Edit <code>src/App.tsx</code> and save to reload.
 				</p>
 				<a
@@ -27,7 +35,7 @@ function App() {
 					rel="noopener noreferrer"
 				>
 					Learn React
-				</a>
+				</a> */}
 			</header>
 		</div>
 	)

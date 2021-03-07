@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import classNames from 'classnames'
 
 export enum AlertType {
-	Success = 'succss',
+	Success = 'success',
 	Default = 'default',
 	Danger = 'danger',
 	Warning = 'warning'
@@ -17,15 +17,32 @@ interface AlertProps {
 
 const Alert: React.FC<AlertProps> = (props) => {
 	const { className, type, showClose, title, content } = props
+	const [showAlert, setShowAlert] = useState<boolean>(true)
 	const alertClass = classNames('alert', className, {
 		[`alert-${type}`]: type
 	})
+	const contentClass = classNames('alert-content', {
+		'alert-content-padding': showClose
+	})
+	function close() {
+		setShowAlert(false)
+	}
 	return (
-		<div className={alertClass}>
-			<div>{title}</div>
-			{content ? <div>{content}</div> : null}
-			{showClose ? <div className={'closeIcon'}>关闭</div> : null}
-		</div>
+		<>
+			{showAlert ? (
+				<div className={alertClass}>
+					<div>
+						<span>{title}</span>
+						{showClose ? (
+							<span className={'closeIcon'} onClick={close}>
+								关闭
+							</span>
+						) : null}
+					</div>
+					{content ? <div className={contentClass}>{content}</div> : null}
+				</div>
+			) : null}
+		</>
 	)
 }
 Alert.defaultProps = {

@@ -1,0 +1,39 @@
+.alert {
+    position: relative;
+    font-weight: $alert-font-family;
+    line-height: $alert-line-height;
+    color:$body-color;
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: middle;
+    background-image: none;
+    border: $alert-border-width solid transparent;
+    @include alert-size( $alert-padding-y,  $alert-padding-x,  $alert-font-size,  $border-radius);
+    box-shadow: $alert-box-shadow;
+    cursor: pointer;
+    transition: $alert-transition;
+    display: inline-block;
+    min-width: "200px";
+}
+.alert-success {
+    @include alert-style($primary, $primary, $white)
+  }
+.alert-danger {
+    @include alert-style($danger, $danger, $white)
+}
+
+.alert-default {
+    @include alert-style($white, $gray-400, $body-color, $white, $primary, $primary)
+}
+
+.closeIcon {
+    margin-left: 20px;
+    float: right;
+}
+
+.alert-content {
+    font-size: $alert-content-font-size;
+}
+.alert-content-padding {
+    padding-right: 50px;
+}
