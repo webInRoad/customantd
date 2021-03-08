@@ -25,7 +25,7 @@ function App() {
 					title="this is alert!"
 					content="this is a long description"
 				></Alert>
-				{/* <p>
+				<p>
 					Edit <code>src/App.tsx</code> and save to reload.
 				</p>
 				<a
@@ -35,7 +35,7 @@ function App() {
 					rel="noopener noreferrer"
 				>
 					Learn React
-				</a> */}
+				</a>
 			</header>
 		</div>
 	)

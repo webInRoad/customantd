@@ -7,7 +7,7 @@ export enum AlertType {
 	Danger = 'danger',
 	Warning = 'warning'
 }
-interface AlertProps {
+export interface AlertProps {
 	className?: string
 	type?: AlertType
 	showClose?: boolean
