@@ -26,7 +26,7 @@ describe('alert组件用例', () => {
 		fireEvent.click(closeIcon)
 		expect(element).not.toBeInTheDocument() //点击关闭按钮之后，alert元素就销毁了
 	})
-	it('自定义alert用例2', () => {
+	it('自定义alert用例', () => {
 		const wrapper = render(<Alert {...testProps}></Alert>)
 		const element = wrapper.container.querySelector('.alert')
 		expect(element).toBeInTheDocument()
