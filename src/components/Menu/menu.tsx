@@ -11,7 +11,7 @@ export interface MenuProps {
 const Menu: React.FC<MenuProps> = (props) => {
 	const { className, defaultIndex, mode, style, onSelect, children } = props
 	const classes = classNames('menu', className, {
-		'menu-vertical': mode == 'vertical'
+		'menu-vertical': mode === 'vertical'
 	})
 	return (
 		<ul className={classes} style={style}>
