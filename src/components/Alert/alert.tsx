@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
+import styles from './alert.scss'
 
 export enum AlertType {
 	Success = 'success',
@@ -18,7 +19,7 @@ export interface AlertProps {
 const Alert: React.FC<AlertProps> = (props) => {
 	const { className, type, showClose, title, content } = props
 	const [showAlert, setShowAlert] = useState<boolean>(true)
-	const alertClass = classNames('alert', className, {
+	const alertClass = classNames(styles['iconLight'], className, {
 		[`alert-${type}`]: type
 	})
 	const contentClass = classNames('alert-content', {
