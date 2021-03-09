@@ -1,10 +1,17 @@
 import React from 'react'
 import Button, { ButtonSize, ButtonType } from './components/Button/button'
 import Alert, { AlertType } from './components/Alert/alert'
+import Menu from './components/Menu/menu'
+import MenuItem from './components/Menu/menuItem'
 function App() {
 	return (
 		<div className="App">
 			<header className="App-header">
+				<Menu defaultIndex={1}>
+					<MenuItem>导航1</MenuItem>
+					<MenuItem>导航2</MenuItem>
+					<MenuItem>导航3</MenuItem>
+				</Menu>
 				<Button size={ButtonSize.Large} onClick={() => alert(2)}>
 					Hello
 				</Button>
