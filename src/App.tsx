@@ -7,7 +7,11 @@ function App() {
 	return (
 		<div className="App">
 			<header className="App-header">
-				<Menu defaultIndex={0} onSelect={(index) => alert(index)}>
+				<Menu
+					mode={'vertical'}
+					defaultIndex={0}
+					onSelect={(index) => alert(index)}
+				>
 					<MenuItem index={0}>导航1</MenuItem>
 					<MenuItem index={1}>导航2</MenuItem>
 					<MenuItem index={2}>导航3</MenuItem>
