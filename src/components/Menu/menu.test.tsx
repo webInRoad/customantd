@@ -21,11 +21,9 @@ const testVerProps: MenuProps = {
 const generateMenu = (props: MenuProps) => {
 	return (
 		<Menu {...props}>
-			<MenuItem index={0}>导航一</MenuItem>
-			<MenuItem disabled index={1}>
-				导航二
-			</MenuItem>
-			<MenuItem index={2}>导航三</MenuItem>
+			<MenuItem>导航一</MenuItem>
+			<MenuItem disabled>导航二</MenuItem>
+			<MenuItem>导航三</MenuItem>
 		</Menu>
 	)
 }
