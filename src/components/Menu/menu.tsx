@@ -19,7 +19,8 @@ const Menu: React.FC<MenuProps> = (props) => {
 	const { className, defaultIndex, mode, style, onSelect, children } = props
 	const [currentActive, setActive] = useState(defaultIndex)
 	const classes = classNames('menu', className, {
-		'menu-vertical': mode === 'vertical'
+		'menu-vertical': mode === 'vertical',
+		'menu-horizontal': mode !== 'vertical'
 	})
 	const handleClick = (index: number) => {
 		setActive(index)
