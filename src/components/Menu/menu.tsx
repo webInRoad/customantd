@@ -34,7 +34,7 @@ const Menu: React.FC<MenuProps> = (props) => {
 	const renderChildrens = React.Children.map(children, (child, index) => {
 		const childElement = child as React.FunctionComponentElement<MenuItemProps>
 		const { displayName } = childElement.type
-		if (displayName == 'menuItem') {
+		if (displayName == 'menuItem' || displayName == 'subMenu') {
 			// return child
 			return React.cloneElement(childElement, { index })
 		} else {

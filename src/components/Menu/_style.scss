@@ -23,6 +23,12 @@
             border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
         }
     }
+    .submenu-item {
+        position: relative;
+        .submenu-title {
+            
+        }
+    }
 }
 .menu-vertical {
     flex-direction: column;
