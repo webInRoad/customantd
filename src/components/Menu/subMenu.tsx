@@ -37,9 +37,29 @@ const SubMenu: React.FC<SubMenuProps> = ({
 		e.preventDefault()
 		setOpen(!isOpen)
 	}
+	let timer: any
+	const handleMouse = (e: React.MouseEvent, toggle: boolean) => {
+		e.preventDefault()
+		clearTimeout(timer)
+		timer = setTimeout(() => {
+			setOpen(toggle)
+		}, 300)
+	}
+	const clickEvent = context.mode == 'vertical' ? { onClick: handleClick } : {}
+	const hoverEvent =
+		context.mode != 'vertical'
+			? {
+					onMouseOver: (e: React.MouseEvent) => {
+						handleMouse(e, true)
+					},
+					onMouseLeave: (e: React.MouseEvent) => {
+						handleMouse(e, false)
+					}
+			  }
+			: {}
 	return (
-		<li key={index} className={classes}>
-			<div className="submenu-title" onClick={handleClick}>
+		<li key={index} className={classes} {...hoverEvent}>
+			<div className="submenu-title" {...clickEvent}>
 				{title}
 			</div>
 			{renderChildren()}
