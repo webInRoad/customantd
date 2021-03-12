@@ -25,4 +25,5 @@ const MenuItems: React.FC<MenuItemProps> = (props) => {
 		</li>
 	)
 }
+MenuItems.displayName = 'menuItem'
 export default MenuItems
