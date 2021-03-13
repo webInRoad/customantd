@@ -10,7 +10,7 @@ function App() {
 			<header className="App-header">
 				<Menu
 					// mode={'vertical'}
-					defaultIndex={0}
+					defaultIndex={'0'}
 					onSelect={(index) => alert(index)}
 				>
 					<MenuItem>导航1</MenuItem>

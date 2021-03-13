@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import classNames from 'classnames'
 import { MenuContext } from './menu'
 export interface MenuItemProps {
-	index?: number
+	index?: string
 	disabled?: boolean
 	className?: string
 	style?: React.CSSProperties
@@ -15,7 +15,7 @@ const MenuItems: React.FC<MenuItemProps> = (props) => {
 		'is-actived': passedContext.index == index
 	})
 	const handleClick = () => {
-		if (passedContext.onSelect && !disabled && typeof index == 'number') {
+		if (passedContext.onSelect && !disabled && typeof index == 'string') {
 			passedContext.onSelect(index)
 		}
 	}

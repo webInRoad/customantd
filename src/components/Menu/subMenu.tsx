@@ -23,10 +23,10 @@ const SubMenu: React.FC<SubMenuProps> = ({
 		const subClasses = classNames('submenu', {
 			'is-opened': isOpen
 		})
-		const childrenComponent = React.Children.map(children, (child, index) => {
+		const childrenComponent = React.Children.map(children, (child, i) => {
 			const childElement = child as React.FunctionComponentElement<MenuItemProps>
 			if (childElement.type.displayName == 'menuItem') {
-				return React.cloneElement(childElement, { index })
+				return React.cloneElement(childElement, { index: `${index}-${i}` })
 			} else {
 				console.error('child must menuItem')
 			}
