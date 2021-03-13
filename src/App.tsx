@@ -9,8 +9,9 @@ function App() {
 		<div className="App">
 			<header className="App-header">
 				<Menu
-					// mode={'vertical'}
+					mode={'vertical'}
 					defaultIndex={'0'}
+					defaultOpenSubMenus={['2']}
 					onSelect={(index) => alert(index)}
 				>
 					<MenuItem>导航1</MenuItem>

@@ -13,8 +13,13 @@ const SubMenu: React.FC<SubMenuProps> = ({
 	className,
 	children
 }) => {
-	const [isOpen, setOpen] = useState(false)
 	const context = useContext(MenuContext)
+	const defaultSubMenus = context.defaultOpenSubMenus as Array<string>
+	const menuOpen =
+		index && context.mode == 'vertical'
+			? defaultSubMenus && defaultSubMenus.includes(index)
+			: false
+	const [isOpen, setOpen] = useState(menuOpen)
 	const classes = classNames('menu-item submenu-item', className, {
 		'is-actived': context.index == index
 	})
