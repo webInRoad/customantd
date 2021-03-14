@@ -6,15 +6,16 @@ import {
 	RenderResult
 } from '@testing-library/react'
 import Menu, { MenuProps } from './menu'
+import SubMenu from './subMenu'
 import MenuItem from './menuItem'
 const testProps: MenuProps = {
-	defaultIndex: 0,
+	defaultIndex: '0',
 	className: 'test',
 	onSelect: jest.fn()
 }
 
 const testVerProps: MenuProps = {
-	defaultIndex: 0,
+	defaultIndex: '0',
 	mode: 'vertical'
 }
 
@@ -24,6 +25,9 @@ const generateMenu = (props: MenuProps) => {
 			<MenuItem>导航一</MenuItem>
 			<MenuItem disabled>导航二</MenuItem>
 			<MenuItem>导航三</MenuItem>
+			<SubMenu title="下拉导航">
+				<MenuItem>下拉一</MenuItem>
+			</SubMenu>
 		</Menu>
 	)
 }
@@ -41,7 +45,8 @@ describe('menu 跟 menuItem测试用例', () => {
 	it('默认属性可以正常渲染组件', () => {
 		expect(menuElement).toBeInTheDocument()
 		expect(menuElement).toHaveClass('menu test')
-		expect(menuElement.getElementsByTagName('li').length).toEqual(3)
+		// expect(menuElement.getElementsByTagName('li').length).toEqual(3)
+		expect(menuElement.querySelectorAll(':scope > li').length).toEqual(4)
 		expect(activeElement).toHaveClass('menu-item is-actived')
 		expect(disabledElement).toHaveClass('menu-item is-disabled')
 	})
@@ -50,12 +55,12 @@ describe('menu 跟 menuItem测试用例', () => {
 		fireEvent.click(thirdItem)
 		expect(thirdItem).toHaveClass('is-actived')
 		expect(activeElement).not.toHaveClass('is-actived')
-		expect(testProps.onSelect).toHaveBeenCalledWith(2)
+		expect(testProps.onSelect).toHaveBeenCalledWith('2')
 
 		// disable menuItem点击事件
 		fireEvent.click(disabledElement)
 		expect(disabledElement).not.toHaveClass('is-actived')
-		expect(testProps.onSelect).not.toHaveBeenCalledWith(1)
+		expect(testProps.onSelect).not.toHaveBeenCalledWith('1')
 	})
 	it('垂直menu用例', () => {
 		cleanup() //解决Found multiple elements by
@@ -63,4 +68,5 @@ describe('menu 跟 menuItem测试用例', () => {
 		const menuElement = wrapper.getByTestId('test-menu')
 		expect(menuElement).toHaveClass('menu-vertical')
 	})
+	it('submenu测试用例', () => {})
 })
