@@ -15,7 +15,7 @@
 		&:focus {
 			text-decoration: none;
 		}
-		&:disabled {
+		&.is-disabled {
 			color: $menu-item-disabled-color;
 			cursor: default;
 			pointer-events: none; //元素永远不会成为鼠标事件的target
