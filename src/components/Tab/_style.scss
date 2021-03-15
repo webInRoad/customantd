@@ -1,0 +1,67 @@
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+	list-style: none;
+	padding: 0;
+	margin-bottom: 30px;
+	border-bottom: $tabs-border-width solid $tabs-border-color;
+	box-shadow: $tabs-box-shadow;
+  .tab-item {
+    padding: $tab-item-padding-y $tab-item-padding-x;
+		cursor: pointer;
+		transition: $tabs-transition;
+		&:hover,
+		&:focus {
+			text-decoration: none;
+		}
+		&:disabled {
+			color: $tab-item-disabled-color;
+			cursor: default;
+			pointer-events: none; //元素永远不会成为鼠标事件的target
+		}
+		&.is-actived,
+		&:hover {
+			color: $tab-item-active-color;
+			border-bottom: $tab-item-active-border-width solid
+				$tab-item-active-color;
+		}
+  }
+}
+.tabs-card {
+  .tab-item {
+    &.is-actived
+     {
+      color: $tab-item-active-color;
+      border: $tabs-border-width solid $tabs-border-color;
+      border-bottom:none;
+    }
+    &:hover {
+      color:$tab-item-active-color
+    }
+  }
+}
+.tabs-horizontal {
+	.tab-item {
+		border-bottom: $tab-item-active-border-width solid transparent;
+	}
+}
+.tabs-vertical {
+	flex-direction: column;
+	border-bottom: none;
+	border-right: $tabs-border-width solid $tabs-border-color;
+	margin: 20px 30px;
+  width: 200px;
+  float: left;
+	.tab-item {
+		border-left: $tab-item-active-border-width solid transparent; //为了防止鼠标移到元素上抖动，设置为transparent就不可见了
+		&.is-actived,
+		&:hover {
+			border-bottom: none;
+			border-left: $tab-item-active-border-width solid $tab-item-active-color;
+		}
+	}
+}
+.content {
+  list-style: none;
+  padding: 0;
+}

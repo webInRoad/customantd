@@ -14,7 +14,7 @@ export interface MenuProps {
 interface IMenuContext {
 	index?: string
 	onSelect?: SelectCallback
-	mode?: string
+	mode?: MenuMode
 	defaultOpenSubMenus?: string[]
 }
 export const MenuContext = createContext<IMenuContext>({ index: ' 0 ' })

@@ -4,12 +4,14 @@ import Alert, { AlertType } from './components/Alert/alert'
 import Menu from './components/Menu/menu'
 import SubMenu from './components/Menu/subMenu'
 import MenuItem from './components/Menu/menuItem'
+import Tabs from './components/Tab/tabs'
+import TabItem from './components/Tab/tabItem'
 function App() {
 	return (
 		<div className="App">
 			<header className="App-header">
 				<Menu
-					// mode={'vertical'}
+					mode={'vertical'}
 					defaultIndex={'0'}
 					defaultOpenSubMenus={['2']}
 					onSelect={(index) => alert(index)}
@@ -20,8 +22,28 @@ function App() {
 						<MenuItem>下拉一</MenuItem>
 						<MenuItem>下拉二</MenuItem>
 					</SubMenu>
-					<MenuItem>导航3</MenuItem>
+					<MenuItem disabled>导航3</MenuItem>
 				</Menu>
+				<Tabs
+					defaultIndex={0}
+					// type="card"
+					mode="vertical"
+					onSelect={(index) => alert(index)}
+				>
+					<TabItem
+						label={
+							<span>
+								<MenuItem>导航1</MenuItem>
+							</span>
+						}
+					>
+						第一个tabItem
+					</TabItem>
+					<TabItem label="card2">第二个tabItem</TabItem>
+					<TabItem label="disabled" disabled>
+						不允许操作的tabItem
+					</TabItem>
+				</Tabs>
 				{/* <Button size={ButtonSize.Large} onClick={() => alert(2)}>
 					Hello
 				</Button>
