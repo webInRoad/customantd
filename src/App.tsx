@@ -1,8 +1,8 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+// import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import Button, { ButtonSize, ButtonType } from './components/Button/button'
 import Alert, { AlertType } from './components/Alert/alert'
@@ -13,13 +13,14 @@ import Tabs from './components/Tab/tabs'
 import TabItem from './components/Tab/tabItem'
 import Icon from './components/Icon/icon'
 
-library.add(fab)
+library.add(fas) // fas相当于solid风格下的所有图标都引入了
+// library.add(faCheckSquare, faCoffee) //引入具体的
 function App() {
 	return (
 		<div className="App">
 			<header className="App-header">
 				{/* <FontAwesomeIcon icon={faCoffee} size={'10x'} /> */}
-				<Icon icon="coffee" size={'10x'} />
+				<Icon icon="arrow-down" theme="primary" size={'10x'} />
 				<Menu
 					mode={'vertical'}
 					defaultIndex={'0'}
