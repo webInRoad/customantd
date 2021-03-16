@@ -1,6 +1,9 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
+// import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import Button, { ButtonSize, ButtonType } from './components/Button/button'
 import Alert, { AlertType } from './components/Alert/alert'
 import Menu from './components/Menu/menu'
@@ -8,11 +11,15 @@ import SubMenu from './components/Menu/subMenu'
 import MenuItem from './components/Menu/menuItem'
 import Tabs from './components/Tab/tabs'
 import TabItem from './components/Tab/tabItem'
+import Icon from './components/Icon/icon'
+
+library.add(fab)
 function App() {
 	return (
 		<div className="App">
 			<header className="App-header">
-				<FontAwesomeIcon icon={faCoffee} size={'10x'} />
+				{/* <FontAwesomeIcon icon={faCoffee} size={'10x'} /> */}
+				<Icon icon="coffee" size={'10x'} />
 				<Menu
 					mode={'vertical'}
 					defaultIndex={'0'}
