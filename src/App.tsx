@@ -20,7 +20,7 @@ function App() {
 		<div className="App">
 			<header className="App-header">
 				{/* <FontAwesomeIcon icon={faCoffee} size={'10x'} /> */}
-				<Icon icon="arrow-down" theme="primary" size={'10x'} />
+				<Icon icon="arrow-down" theme="primary" size={'sm'} />
 				<Menu
 					mode={'vertical'}
 					defaultIndex={'0'}
