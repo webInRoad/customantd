@@ -22,7 +22,7 @@ function App() {
 				{/* <FontAwesomeIcon icon={faCoffee} size={'10x'} /> */}
 				<Icon icon="arrow-down" theme="primary" size={'sm'} />
 				<Menu
-					mode={'vertical'}
+					// mode={'vertical'}
 					defaultIndex={'0'}
 					defaultOpenSubMenus={['2']}
 					onSelect={(index) => alert(index)}
