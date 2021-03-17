@@ -5,8 +5,8 @@ const defaultProps: ButtonProps = {
 	onClick: jest.fn()
 }
 const testProps: ButtonProps = {
-	btnType: ButtonType.Primary,
-	size: ButtonSize.Large,
+	btnType: 'primary',
+	size: 'large',
 	className: 'extra'
 }
 const disabledProps: ButtonProps = {
@@ -37,7 +37,7 @@ describe('test button component', () => {
 	})
 	it('类型为link并且带有href属性按钮用例', () => {
 		const wrapper = render(
-			<Button href="http://www.baidu.com" btnType={ButtonType.Link}>
+			<Button href="http://www.baidu.com" btnType={'link'}>
 				Link
 			</Button>
 		)
