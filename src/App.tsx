@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 // import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons'
-import Button, { ButtonSize, ButtonType } from './components/Button/button'
+// import Button, { ButtonSize, ButtonType } from './components/Button/button'
 import Alert, { AlertType } from './components/Alert/alert'
 import Menu from './components/Menu/menu'
 import SubMenu from './components/Menu/subMenu'
@@ -12,10 +12,13 @@ import MenuItem from './components/Menu/menuItem'
 import Tabs from './components/Tab/tabs'
 import TabItem from './components/Tab/tabItem'
 import Icon from './components/Icon/icon'
+import Transition from './components/Transition/transition'
+import Button from './components/Button/button'
 
 library.add(fas) // fas相当于solid风格下的所有图标都引入了
 // library.add(faCheckSquare, faCoffee) //引入具体的
 function App() {
+	const [show, setShow] = useState(false)
 	return (
 		<div className="App">
 			<header className="App-header">
@@ -75,17 +78,40 @@ function App() {
 					title="this is alert!"
 					content="this is a long description"
 				></Alert> */}
-				<p>
-					Edit <code>src/App.tsx</code> and save to reload.
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
+				<Button
+					btnType="primary"
+					size="large"
+					onClick={() => {
+						setShow(!show)
+					}}
 				>
-					Learn React
-				</a>
+					Toggle
+				</Button>
+				<Transition in={show} animation="zoom-in-top" timeout={3000}>
+					<div>
+						<p>
+							Edit <code>src/App.tsx</code> and save to reload.
+						</p>
+						<a
+							className="App-link"
+							href="https://reactjs.org"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							Learn React
+						</a>
+					</div>
+				</Transition>
+				<Transition
+					in={show}
+					animation="zoom-in-top"
+					timeout={3000}
+					wrapper={true}
+				>
+					<Button btnType="primary" size="large">
+						a large button
+					</Button>
+				</Transition>
 			</header>
 		</div>
 	)
