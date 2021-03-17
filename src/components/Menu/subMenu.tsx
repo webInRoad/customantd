@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition'
 import classNames from 'classnames'
+import Transition from '../Transition/transition'
 import { MenuContext } from './menu'
 import { MenuItemProps } from './menuItem'
 import Icon from '../Icon/icon'
@@ -47,15 +48,9 @@ const SubMenu: React.FC<SubMenuProps> = ({
 			}
 		})
 		return (
-			<CSSTransition
-				in={isOpen}
-				timeout={300}
-				classNames="zoom-in-top"
-				appear
-				unmountOnExit
-			>
+			<Transition in={isOpen} timeout={300} animation="zoom-in-bottom">
 				<ul className={subClasses}>{childrenComponent}</ul>
-			</CSSTransition>
+			</Transition>
 		)
 	}
 	const handleClick = (e: React.MouseEvent) => {
