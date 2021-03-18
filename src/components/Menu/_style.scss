@@ -30,13 +30,27 @@
 	.submenu-item {
 		position: relative;
 		.submenu-title {
+      display: flex;
+      align-items: center;
+      .arrow-icon {
+        margin-left: 3px;
+        transition: transform .3s ease-in;
+      }
+      &:hover {
+        .arrow-icon {
+          transform: rotate(180deg);
+        }
+      }
+      
 		}
 	}
 	.submenu {
-		display: none;
+    // display: none; //设置了display 动画就不会生效 但opacity与display:none;又不一样，display:none是不在DOM元素中,如果仍然会有该特性，就要用到react transition
+    // opacity: 0;
 		list-style: none;
 		padding-left: 0;
 		white-space: nowrap;
+    // transition: opacity 5s ease;
 		.menu-item {
 			padding: $menu-item-padding-y $menu-item-padding-x;
 			cursor: pointer;
@@ -47,10 +61,21 @@
 				color: $menu-item-active-color !important;
 			}
 		}
-		&.is-opened {
-			display: block;
-		}
+		// &.is-opened {
+		// 	display: block;
+    //   // opacity: 1;
+		// }
 	}
+  .is-vertical {
+    .arrow-icon {
+      transform: rotate(0deg) !important;
+    }
+  }
+  .is-vertical.is-opened {
+    .arrow-icon {
+      transform: rotate(180deg) !important;
+    }
+  }
 }
 .menu-horizontal {
 	//prettier-ignore
