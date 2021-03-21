@@ -1,13 +1,25 @@
 import React from 'react'
 import classNames from 'classnames'
-export type ButtonSize = 'large' | 'small'
+export type ButtonSize = 'lg' | 'sm'
 export type ButtonType = 'primary' | 'default' | 'danger' | 'link'
 interface BaseButtonProps {
 	className?: string
+	/**
+	 * How large should the button be?
+	 */
 	size?: ButtonSize
+	/**
+	 * 按钮主题样式
+	 */
 	btnType?: ButtonType
+	/**
+	 * 按钮是否可操作
+	 */
 	disabled?: boolean
 	children: React.ReactNode
+	/**
+	 * 链接地址
+	 */
 	link?: string
 }
 type NativeButtonProps = BaseButtonProps &
@@ -15,7 +27,10 @@ type NativeButtonProps = BaseButtonProps &
 type NativeAnchorProps = BaseButtonProps &
 	React.AnchorHTMLAttributes<HTMLElement>
 export type ButtonProps = Partial<NativeButtonProps & NativeAnchorProps>
-const Button: React.FC<ButtonProps> = (props) => {
+/**
+ * Button Component
+ */
+export const Button: React.FC<ButtonProps> = (props) => {
 	const {
 		className,
 		size,
@@ -49,4 +64,3 @@ Button.defaultProps = {
 	disabled: false,
 	btnType: 'default'
 }
-export default Button

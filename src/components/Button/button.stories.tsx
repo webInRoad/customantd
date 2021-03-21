@@ -1,6 +1,6 @@
 import React from 'react'
 import { Meta, Story } from '@storybook/react/types-6-0'
-import Button, { ButtonProps, ButtonSize, ButtonType } from './button'
+import { Button, ButtonProps, ButtonSize, ButtonType } from './button'
 
 export default {
 	title: 'Button组件',
@@ -34,19 +34,12 @@ export const LinkButton = Template.bind({})
 LinkButton.args = {
 	btnType: 'link'
 }
-export const OneItem = () => (
-	<>
-		<Button btnType="primary">确认</Button>
-		<Button btnType="danger"></Button>
-		<Button />
-	</>
-)
 
 export const DefaultButton = () => <Button>default button</Button>
 export const ButtonWithSize = () => (
 	<>
-		<Button size="large">large button</Button>
-		<Button size="small">small button</Button>
+		<Button size="lg">large button</Button>
+		<Button size="sm">small button</Button>
 	</>
 )
 export const ButtonWithType = () => (
