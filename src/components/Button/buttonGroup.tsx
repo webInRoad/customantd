@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Button, { ButtonProps } from './button'
+import { Button, ButtonProps } from './button'
 
 export default function TaskList(buttons: ButtonProps[]) {
 	if (buttons.length === 0) {

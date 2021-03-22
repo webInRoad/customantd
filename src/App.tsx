@@ -13,7 +13,7 @@ import Tabs from './components/Tab/tabs'
 import TabItem from './components/Tab/tabItem'
 import Icon from './components/Icon/icon'
 import Transition from './components/Transition/transition'
-import Button from './components/Button/button'
+import { Button } from './components/Button/button'
 
 library.add(fas) // fas相当于solid风格下的所有图标都引入了
 // library.add(faCheckSquare, faCoffee) //引入具体的
@@ -80,7 +80,7 @@ function App() {
 				></Alert> */}
 				<Button
 					btnType="primary"
-					size="large"
+					size="lg"
 					onClick={() => {
 						setShow(!show)
 					}}
@@ -108,7 +108,7 @@ function App() {
 					timeout={3000}
 					wrapper={true}
 				>
-					<Button btnType="primary" size="large">
+					<Button btnType="primary" size="lg">
 						a large button
 					</Button>
 				</Transition>
