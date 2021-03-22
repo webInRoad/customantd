@@ -42,12 +42,12 @@ export const ButtonWithSize = () => (
 		<Button size="sm">small button</Button>
 	</>
 )
-export const ButtonWithType = () => (
-	<>
-		<Button btnType="primary">primary button</Button>
-		<Button btnType="danger">danger button</Button>
-		<Button btnType="link" href="http://www.baidu.com">
-			link button
-		</Button>
-	</>
-)
+// export const ButtonWithType = () => (
+// 	<>
+// 		<Button btnType="primary">primary button</Button>
+// 		<Button btnType="danger">danger button</Button>
+// 		<Button btnType="link" href="http://www.baidu.com">
+// 			link button
+// 		</Button>
+// 	</>
+// )
