@@ -1,12 +1,8 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
-
-export enum AlertType {
-	Success = 'success',
-	Default = 'default',
-	Danger = 'danger',
-	Warning = 'warning'
-}
+import Icon from '../Icon/icon'
+import Transition from '../Transition/transition'
+type AlertType = 'success' | 'default' | 'danger' | 'warning'
 export interface AlertProps {
 	className?: string
 	type?: AlertType
@@ -15,7 +11,7 @@ export interface AlertProps {
 	content?: React.ReactNode
 }
 
-const Alert: React.FC<AlertProps> = (props) => {
+export const Alert: React.FC<AlertProps> = (props) => {
 	const { className, type, showClose, title, content } = props
 	const [showAlert, setShowAlert] = useState<boolean>(true)
 	const alertClass = classNames('alert', className, {
@@ -29,24 +25,29 @@ const Alert: React.FC<AlertProps> = (props) => {
 	}
 	return (
 		<>
-			{showAlert ? (
+			<Transition
+				in={showAlert}
+				timeout={300}
+				animation="zoom-in-left"
+				wrapper={true}
+			>
 				<div className={alertClass}>
 					<div>
 						<span>{title}</span>
 						{showClose ? (
 							<span className={'closeIcon'} onClick={close}>
-								关闭
+								<Icon icon="times" />
 							</span>
 						) : null}
 					</div>
 					{content ? <div className={contentClass}>{content}</div> : null}
 				</div>
-			) : null}
+			</Transition>
 		</>
 	)
 }
 Alert.defaultProps = {
-	type: AlertType.Default,
+	type: 'default',
 	showClose: true
 }
 export default Alert

@@ -5,7 +5,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 // import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 // import Button, { ButtonSize, ButtonType } from './components/Button/button'
-import Alert, { AlertType } from './components/Alert/alert'
+import Alert from './components/Alert/alert'
 import Menu from './components/Menu/menu'
 import SubMenu from './components/Menu/subMenu'
 import MenuItem from './components/Menu/menuItem'
@@ -70,14 +70,14 @@ function App() {
 				<Button btnType={ButtonType.Primary}>Hello</Button>
 				<Button disabled btnType={ButtonType.Link}>
 					Hello
-				</Button>
+				</Button> */}
 				<Alert title="this is alert!"></Alert>
 				<Alert
-					type={AlertType.Success}
+					type="success"
 					showClose={false}
 					title="this is alert!"
 					content="this is a long description"
-				></Alert> */}
+				></Alert>
 				<Button
 					btnType="primary"
 					size="lg"
