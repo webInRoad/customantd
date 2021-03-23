@@ -42,6 +42,11 @@ export const ButtonWithSize = () => (
 		<Button size="sm">small button</Button>
 	</>
 )
+// Button.stories.tsx
+
+// export const Primary: React.VFC<{}> = () => <Button size="lg">large</Button>
+// export const Secondary: React.VFC<{}> = () => <Button size="sm">small</Button>
+// export const Tertiary: React.VFC<{}> = () => <Button></Button>
 // export const ButtonWithType = () => (
 // 	<>
 // 		<Button btnType="primary">primary button</Button>
