@@ -35,7 +35,7 @@ export const Input: React.FC<InputProps> = (props) => {
 		return value
 	}
 	if ('value' in props) {
-		delete props.defaultValue //value与defaultValue只能存在一个，不能既是受控，又是非受控组件
+		delete restProps.defaultValue //value与defaultValue只能存在一个，不能既是受控，又是非受控组件
 		restProps.value = fixControlledValue(props.value) //当value没有设置初始值时给予""
 	}
 	return (
