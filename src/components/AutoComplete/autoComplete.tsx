@@ -1,5 +1,6 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useState, useEffect } from 'react'
 import { Input, InputProps } from '../Input/input'
+import useDebounce from '../../hooks/useDebounce'
 import Icon from '../Icon/icon'
 interface DataSourceObject {
 	name: string
@@ -19,16 +20,15 @@ export const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 	const [inputValue, setInputValue] = useState(value)
 	const [dropDownData, setDropDownData] = useState<DataSourceType[]>()
 	const [loading, setLoading] = useState<boolean>(false)
-	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const value = e.target.value.trim()
-		setInputValue(value)
-		if (value) {
-			const result = onChange && onChange({ name: value })
+	const debounceValue = useDebounce(inputValue, 500) as string
+	useEffect(() => {
+		if (debounceValue) {
+			const result = onChange && onChange({ name: debounceValue })
 			if (result instanceof Promise) {
 				setLoading(true)
 				result.then((data) => {
 					setLoading(false)
-					console.info(data, 'data')
+					// console.info(data, 'data')
 					setDropDownData(data)
 				})
 			} else {
@@ -37,6 +37,10 @@ export const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 		} else {
 			setDropDownData([])
 		}
+	}, [debounceValue])
+	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value.trim()
+		setInputValue(value)
 	}
 	const renderTemplate = (item: DataSourceType) => {
 		return renderOption ? renderOption(item) : item.name
