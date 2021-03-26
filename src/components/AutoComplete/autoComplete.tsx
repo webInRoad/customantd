@@ -8,6 +8,7 @@ import React, {
 import classNames from 'classnames'
 import { Input, InputProps } from '../Input/input'
 import useDebounce from '../../hooks/useDebounce'
+import useClickOutside from '../../hooks/useClickOutside'
 import Icon from '../Icon/icon'
 interface DataSourceObject {
 	name: string
@@ -29,6 +30,10 @@ export const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 	const [dropDownData, setDropDownData] = useState<DataSourceType[]>([])
 	const [loading, setLoading] = useState<boolean>(false)
 	const triggerSearch = useRef(false)
+	const componentRef = useRef<HTMLDivElement>(null)
+	useClickOutside(componentRef, () => {
+		setDropDownData([])
+	})
 	const debounceValue = useDebounce(inputValue, 500) as string
 	useEffect(() => {
 		if (debounceValue && triggerSearch.current) {
@@ -112,7 +117,7 @@ export const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 		}
 	}
 	return (
-		<div>
+		<div ref={componentRef} className="autoComplete-wrapper">
 			<Input
 				value={inputValue}
 				onChange={handleOnChange}
