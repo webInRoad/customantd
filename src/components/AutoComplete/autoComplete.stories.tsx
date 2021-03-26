@@ -55,22 +55,22 @@ const renderOption = (item: DataSourceType) => {
 		</>
 	)
 }
-// const filterData = (item: DataSourceType) => {
-// 	return ballData.filter((data) => data.name.includes(item.name))
-// }
-
-const filterData = (query: DataSourceType) => {
-	return fetch(`https://api.github.com/search/users?q=${query.name}`)
-		.then((res) => res.json())
-		.then(({ items }) => {
-			console.info(items, 'items')
-			return (
-				items &&
-				items.length &&
-				items.slice(0, 10).map((item: any) => ({ name: item.login, ...item }))
-			)
-		})
+const filterData = (item: DataSourceType) => {
+	return ballData.filter((data) => data.name.includes(item.name))
 }
+
+// const filterData = (query: DataSourceType) => {
+// 	return fetch(`https://api.github.com/search/users?q=${query.name}`)
+// 		.then((res) => res.json())
+// 		.then(({ items }) => {
+// 			console.info(items, 'items')
+// 			return (
+// 				items &&
+// 				items.length &&
+// 				items.slice(0, 10).map((item: any) => ({ name: item.login, ...item }))
+// 			)
+// 		})
+// }
 const onSelect = (item: DataSourceType) => {
 	alert(item.name)
 }
