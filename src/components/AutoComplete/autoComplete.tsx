@@ -52,6 +52,7 @@ export const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 		} else {
 			setDropDownData([])
 		}
+		setHighLightNum(-1)
 	}, [debounceValue])
 	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value.trim()
@@ -69,7 +70,7 @@ export const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 	}
 	const generateDropDown = () => {
 		return (
-			<ul>
+			<ul className="autoComplete-list">
 				{dropDownData.map((item, index) => {
 					const cnames = classNames('item', {
 						'is-active': highlightNum == index
