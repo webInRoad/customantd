@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, ChangeEvent } from 'react'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -18,42 +18,67 @@ import { Button } from './components/Button/button'
 
 library.add(fas) // fas相当于solid风格下的所有图标都引入了
 // library.add(faCheckSquare, faCoffee) //引入具体的
-function App() {
+const App: React.FC = () => {
 	// const [show, setShow] = useState(false)
-	const [title, setTitle] = useState('')
-	const postData = {
-		title: 'title1',
-		name: '张三'
+	// const [title, setTitle] = useState('')
+	// const postData = {
+	// 	title: 'title1',
+	// 	name: '张三'
+	// }
+	// useEffect(() => {
+	// 	// axios
+	// 	// 	.get('https://jsonplaceholder.typicode.com/posts/1', {
+	// 	// 		headers: {
+	// 	// 			'X-Requested-With': 'XMLHttpRequest'
+	// 	// 		},
+	// 	// 		responseType: 'json'
+	// 	// 	})
+	// 	// 	.then((result) => {
+	// 	// 		console.info(result)
+	// 	// 		setTitle(result.data.title)
+	// 	// 	})
+	// 	axios
+	// 		.post('https://jsonplaceholder.typicode.com/posts', postData, {
+	// 			headers: {
+	// 				'X-Requested-With': 'XMLHttpRequest'
+	// 			},
+	// 			responseType: 'json'
+	// 		})
+	// 		.then((result) => {
+	// 			console.info(result)
+	// 			setTitle(result.data.title)
+	// 		})
+	// })
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+		const files = e.target.files
+		if (files) {
+			const file = files[0]
+			const formData = new FormData()
+			formData.append(file.name, file)
+			axios
+				.post('https://jsonplaceholder.typicode.com/posts', formData, {
+					headers: {
+						'content-type': 'multipart/form-data'
+					}
+				})
+				.then((result) => {
+					console.info(result)
+				})
+		}
 	}
-	useEffect(() => {
-		// axios
-		// 	.get('https://jsonplaceholder.typicode.com/posts/1', {
-		// 		headers: {
-		// 			'X-Requested-With': 'XMLHttpRequest'
-		// 		},
-		// 		responseType: 'json'
-		// 	})
-		// 	.then((result) => {
-		// 		console.info(result)
-		// 		setTitle(result.data.title)
-		// 	})
-		axios
-			.post('https://jsonplaceholder.typicode.com/posts', postData, {
-				headers: {
-					'X-Requested-With': 'XMLHttpRequest'
-				},
-				responseType: 'json'
-			})
-			.then((result) => {
-				console.info(result)
-				setTitle(result.data.title)
-			})
-	})
-
 	return (
 		<div className="App">
 			<header className="App-header">
-				<h1>{title}</h1>
+				{/* <form
+					method="post"
+					encType="multipart/form-data"
+					action="https://jsonplaceholder.typicode.com/posts"
+				>
+					<input type="file" name="myFile" />
+					<button type="submit">确认</button>
+				</form> */}
+				<input type="file" name="myFile" onChange={handleChange} />
+				{/* <h1>{title}</h1> */}
 				{/* <FontAwesomeIcon icon={faCoffee} size={'10x'} /> */}
 				{/* <Icon icon="arrow-down" theme="primary" size={'sm'} />
 				<Menu
