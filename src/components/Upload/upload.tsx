@@ -13,6 +13,12 @@ export interface IUploadProps {
 	onSuccess?: (data: any, file: File) => void
 	onError?: (err: any, file: File) => void
 	onChange?: (file: File) => void
+	name?: string
+	headers?: { [key: string]: any }
+	data?: { [key: string]: any }
+	withCredentials?: boolean
+	accept?: string
+	multiple?: boolean
 }
 export interface UploadFile {
 	uid: string
@@ -33,7 +39,13 @@ const Upload: React.FC<IUploadProps> = (props) => {
 		onSuccess,
 		onError,
 		onChange,
-		onRemove
+		onRemove,
+		name,
+		headers,
+		data,
+		withCredentials,
+		accept,
+		multiple
 	} = props
 	const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || [])
 	const inputRef = useRef<HTMLInputElement>(null)
@@ -68,7 +80,12 @@ const Upload: React.FC<IUploadProps> = (props) => {
 	}
 	const postFile = (file: File) => {
 		const formData = new FormData()
-		formData.append(file.name, file)
+		formData.append(name || file.name, file)
+		if (data) {
+			Object.keys(data).forEach((key) => {
+				formData.append(key, data[key])
+			})
+		}
 		let _file: UploadFile = {
 			uid: Date.now() + 'upload-file',
 			size: file.size,
@@ -77,10 +94,14 @@ const Upload: React.FC<IUploadProps> = (props) => {
 			percent: 0,
 			raw: file
 		}
-		setFileList([_file, ...fileList])
+		// setFileList([_file, ...fileList])
+		setFileList((prevList) => {
+			return [_file, ...prevList]
+		})
 		axios
 			.post(action, formData, {
 				headers: {
+					...headers,
 					'Content-type': 'multipart/form-data'
 				},
 				onUploadProgress: (e) => {
@@ -89,7 +110,8 @@ const Upload: React.FC<IUploadProps> = (props) => {
 						onProgress(percentage, file)
 					}
 					updateFileList(_file, { percent: percentage, status: 'uploading' })
-				}
+				},
+				withCredentials
 			})
 			.then((data) => {
 				if (onSuccess) {
@@ -144,9 +166,14 @@ const Upload: React.FC<IUploadProps> = (props) => {
 				style={{ display: 'none' }}
 				ref={inputRef}
 				onChange={handleChange}
+				accept={accept}
+				multiple={multiple}
 			></input>
 			<UploadList fileList={fileList} onRemove={handleRemove} />
 		</>
 	)
+}
+Upload.defaultProps = {
+	name: 'file'
 }
 export default Upload

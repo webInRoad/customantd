@@ -38,6 +38,12 @@ defaultUpload.args = {
 	action: 'https://jsonplaceholder.typicode.com/posts',
 	// action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
 	defaultFileList: defaultUploadList,
+	name: 'new',
+	headers: { 'X-sdp-app-id': '3360324' },
+	data: { key: 'value' },
+	withCredentials: true,
+	accept: '.jpg',
+	multiple: true,
 	onRemove() {
 		console.info(1212)
 	},
@@ -51,8 +57,8 @@ defaultUpload.args = {
 		console.info(err, file)
 	},
 	beforeUpload(file) {
-		// return checkSize(file)
-		return filePromise(file)
+		return checkSize(file)
+		// return filePromise(file)
 	},
 	onChange(file) {
 		console.info(file)
