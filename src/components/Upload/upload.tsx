@@ -1,10 +1,13 @@
 import React, { useState, useRef } from 'react'
 import axios from 'axios'
 import { Button } from '../Button/button'
+import { UploadList } from './uploadList'
 
 type fileStatus = 'ready' | 'uploading' | 'success' | 'error'
 export interface IUploadProps {
 	action: string
+	defaultFileList?: UploadFile[]
+	onRemove?: (file: UploadFile) => void
 	beforeUpload?: (file: File) => boolean | Promise<File>
 	onProgress?: (percentage: number, file: File) => void
 	onSuccess?: (data: any, file: File) => void
@@ -17,20 +20,22 @@ export interface UploadFile {
 	name: string
 	status: fileStatus
 	percent: number
-	raw: File
+	raw?: File
 	response?: any
 	error?: any
 }
 const Upload: React.FC<IUploadProps> = (props) => {
 	const {
 		action,
+		defaultFileList,
 		beforeUpload,
 		onProgress,
 		onSuccess,
 		onError,
-		onChange
+		onChange,
+		onRemove
 	} = props
-	const [fileList, setFileList] = useState<UploadFile[]>([])
+	const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || [])
 	const inputRef = useRef<HTMLInputElement>(null)
 	const handleClick = () => {
 		if (inputRef.current) {
@@ -121,6 +126,14 @@ const Upload: React.FC<IUploadProps> = (props) => {
 		})
 	}
 	console.info(fileList, 'fileList')
+	const handleRemove = (file: UploadFile) => {
+		setFileList((prevList) => {
+			return prevList.filter((list) => list.uid !== file.uid)
+		})
+		if (onRemove) {
+			onRemove(file)
+		}
+	}
 	return (
 		<>
 			<Button btnType="primary" onClick={handleClick}>
@@ -132,6 +145,7 @@ const Upload: React.FC<IUploadProps> = (props) => {
 				ref={inputRef}
 				onChange={handleChange}
 			></input>
+			<UploadList fileList={fileList} onRemove={handleRemove} />
 		</>
 	)
 }
