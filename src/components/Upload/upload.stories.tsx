@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Meta, Story } from '@storybook/react'
 import Upload, { IUploadProps, UploadFile } from './upload'
-
+import Icon from '../Icon/icon'
 export default {
 	title: 'upload',
 	component: Upload
@@ -31,7 +31,14 @@ const filePromise = (file: File) => {
 	const newFile = new File([file], 'new_name.docx', { type: file.type })
 	return Promise.resolve(newFile)
 }
-const Template: Story<IUploadProps> = (args) => <Upload {...args} />
+const Template: Story<IUploadProps> = (args) => (
+	<Upload {...args}>
+		{' '}
+		<Icon icon="upload" size="5x" theme="secondary" />
+		<br />
+		<p>Drag file over to upload</p>
+	</Upload>
+)
 
 export const defaultUpload = Template.bind({})
 defaultUpload.args = {
@@ -62,5 +69,6 @@ defaultUpload.args = {
 	},
 	onChange(file) {
 		console.info(file)
-	}
+	},
+	drag: true
 }

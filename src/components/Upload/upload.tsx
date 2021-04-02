@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react'
 import axios from 'axios'
 import { Button } from '../Button/button'
 import { UploadList } from './uploadList'
+import { Dragger } from './dragger'
 
 type fileStatus = 'ready' | 'uploading' | 'success' | 'error'
 export interface IUploadProps {
@@ -19,6 +20,7 @@ export interface IUploadProps {
 	withCredentials?: boolean
 	accept?: string
 	multiple?: boolean
+	drag?: boolean
 }
 export interface UploadFile {
 	uid: string
@@ -32,6 +34,7 @@ export interface UploadFile {
 }
 const Upload: React.FC<IUploadProps> = (props) => {
 	const {
+		children,
 		action,
 		defaultFileList,
 		beforeUpload,
@@ -45,7 +48,8 @@ const Upload: React.FC<IUploadProps> = (props) => {
 		data,
 		withCredentials,
 		accept,
-		multiple
+		multiple,
+		drag
 	} = props
 	const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || [])
 	const inputRef = useRef<HTMLInputElement>(null)
@@ -59,6 +63,12 @@ const Upload: React.FC<IUploadProps> = (props) => {
 		if (!files) {
 			return
 		}
+		uploadFiles(files)
+		if (inputRef.current) {
+			inputRef.current.value = ''
+		}
+	}
+	const uploadFiles = (files: FileList) => {
 		const fileList = Array.from(files)
 		fileList.forEach((file) => {
 			if (!beforeUpload) {
@@ -74,9 +84,6 @@ const Upload: React.FC<IUploadProps> = (props) => {
 				}
 			}
 		})
-		if (inputRef.current) {
-			inputRef.current.value = ''
-		}
 	}
 	const postFile = (file: File) => {
 		const formData = new FormData()
@@ -157,20 +164,27 @@ const Upload: React.FC<IUploadProps> = (props) => {
 		}
 	}
 	return (
-		<>
-			<Button btnType="primary" onClick={handleClick}>
+		<div className="upload-component">
+			<div className="upload-input" onClick={handleClick}>
+				{drag ? (
+					<Dragger onFile={(files) => uploadFiles(files)}>{children}</Dragger>
+				) : (
+					{ children }
+				)}
+				{/* <Button btnType="primary" onClick={handleClick}>
 				上传
-			</Button>
-			<input
-				type="file"
-				style={{ display: 'none' }}
-				ref={inputRef}
-				onChange={handleChange}
-				accept={accept}
-				multiple={multiple}
-			></input>
-			<UploadList fileList={fileList} onRemove={handleRemove} />
-		</>
+			</Button> */}
+				<input
+					type="file"
+					style={{ display: 'none' }}
+					ref={inputRef}
+					onChange={handleChange}
+					accept={accept}
+					multiple={multiple}
+				></input>
+				<UploadList fileList={fileList} onRemove={handleRemove} />
+			</div>
+		</div>
 	)
 }
 Upload.defaultProps = {
