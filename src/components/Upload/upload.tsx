@@ -32,7 +32,7 @@ export interface UploadFile {
 	response?: any
 	error?: any
 }
-const Upload: React.FC<IUploadProps> = (props) => {
+export const Upload: React.FC<IUploadProps> = (props) => {
 	const {
 		children,
 		action,
@@ -169,12 +169,13 @@ const Upload: React.FC<IUploadProps> = (props) => {
 				{drag ? (
 					<Dragger onFile={(files) => uploadFiles(files)}>{children}</Dragger>
 				) : (
-					{ children }
+					children
 				)}
 				{/* <Button btnType="primary" onClick={handleClick}>
 				上传
 			</Button> */}
 				<input
+					className="file-input"
 					type="file"
 					style={{ display: 'none' }}
 					ref={inputRef}
