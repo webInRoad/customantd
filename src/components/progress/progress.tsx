@@ -32,3 +32,4 @@ Progress.defaultProps = {
 	showText: true,
 	theme: 'primary'
 }
+export default Progress

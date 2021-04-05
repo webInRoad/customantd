@@ -122,6 +122,7 @@ export const Upload: React.FC<IUploadProps> = (props) => {
 			})
 			.then((data) => {
 				if (onSuccess) {
+					console.info(data, 'data')
 					onSuccess(data, file)
 				}
 				if (onChange) {

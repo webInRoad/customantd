@@ -11,7 +11,7 @@ import Icon from '../Icon/icon'
 // 	title: string
 // 	className?: string
 // }
-interface SubMenuProps {
+export interface SubMenuProps {
 	index?: string
 	title: string
 	className?: string
